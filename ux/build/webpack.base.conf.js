@@ -12,7 +12,7 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.ts'
   },
   output: {
     path: config.build.assetsRoot,
@@ -20,7 +20,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue', '.json'],
+    extensions: ['', '.js', '.ts', '.vue', '.json'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
       'src': path.resolve(__dirname, '../src'),
@@ -52,8 +52,8 @@ module.exports = {
         loader: 'vue'
       },
       {
-        test: /\.js$/,
-        loader: 'babel',
+        test: /\.ts$/,
+        loader: 'vue-ts',
         include: projectRoot,
         exclude: /node_modules/
       },
@@ -83,7 +83,13 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   vue: {
-    loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
+    // instruct vue-loader to load TypeScript
+    loaders: Object.assign(
+      {js: 'vue-ts-loader'},
+      utils.cssLoaders({sourceMap: useCssSourceMap})
+    ),
+    // make TS' generated code cooperate with vue-loader
+    esModule: true,
     postcss: [
       require('autoprefixer')({
         browsers: ['last 2 versions']
