@@ -12,7 +12,7 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
   entry: {
-    app: './src/main.ts'
+    app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -20,9 +20,11 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.vue', '.json'],
+    extensions: ['', '.js', '.vue', '.json'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
+      'semantic-ui-css': path.resolve(__dirname, '../semantic-ui/dist/semantic.css'),
+      'semantic-ui': path.resolve(__dirname, '../semantic-ui/dist/semantic.js'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components')
@@ -52,8 +54,8 @@ module.exports = {
         loader: 'vue'
       },
       {
-        test: /\.ts$/,
-        loader: 'vue-ts',
+        test: /\.js$/,
+        loader: 'babel',
         include: projectRoot,
         exclude: /node_modules/
       },
@@ -83,13 +85,7 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   vue: {
-    // instruct vue-loader to load TypeScript
-    loaders: Object.assign(
-      {js: 'vue-ts-loader'},
-      utils.cssLoaders({sourceMap: useCssSourceMap})
-    ),
-    // make TS' generated code cooperate with vue-loader
-    esModule: true,
+    loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
     postcss: [
       require('autoprefixer')({
         browsers: ['last 2 versions']
