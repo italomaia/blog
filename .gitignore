@@ -1,1 +1,3 @@
 ux/semantic-ui/dist
+*.sqlite
+*.log
