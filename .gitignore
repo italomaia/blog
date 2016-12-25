@@ -7,6 +7,8 @@
 *.log
 
 # files
+ux/semantic-ui/gulpfile.js
 
 # folders
 ux/semantic-ui/dist
+ux/semantic-ui/tasks
