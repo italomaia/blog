@@ -1,0 +1,18 @@
+FROM node
+
+ENV SRC /usr/src/ux
+
+RUN mkdir -p ${SRC}
+WORKDIR ${SRC}
+
+COPY package.json .
+COPY semantic.json .
+
+RUN npm set progress=false
+RUN npm install -g gulp
+RUN npm install
+
+COPY . ./
+
+ENTRYPOINT ./entrypoint.sh
+CMD npm run build
