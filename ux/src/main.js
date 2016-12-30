@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App'
 
-require('semantic-ui-css')
+require('semantic-css')
+require('semantic-js')
 
 /* eslint-disable no-new */
 new Vue({

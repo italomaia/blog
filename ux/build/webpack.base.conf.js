@@ -23,8 +23,8 @@ module.exports = {
     extensions: ['', '.js', '.vue', '.json'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
-      'semantic-ui-css': path.resolve(__dirname, '../semantic-ui/dist/semantic.css'),
-      'semantic-ui': path.resolve(__dirname, '../semantic-ui/dist/semantic.js'),
+      'semantic-css': path.resolve(__dirname, '../semantic-ui/dist/semantic.css'),
+      'semantic-js': path.resolve(__dirname, '../semantic-ui/dist/semantic.js'),
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components')
