@@ -9,10 +9,11 @@ COPY package.json .
 COPY semantic.json .
 
 RUN npm set progress=false
-RUN npm install -g gulp
-RUN npm install
+RUN npm install -g -s gulp \
+  && npm install -s \
+  && npm cache clean
+RUN gulp --cwd=semantic-ui build
 
 COPY . ./
 
-ENTRYPOINT ./entrypoint.sh
 CMD npm run build
