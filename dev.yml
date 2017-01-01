@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  ux:
+    command: npm run dev
+    volumes:
+      - ./ux:/usr/src/ux/
+    ports:
+      - "8080:8080"
+
+  semantic:
+    build:
+      context: ./ux
+      dockerfile: dockerfile.semantic
+    command: gulp --cwd=/usr/src/ux/semantic-ui watch
+    depends_on:
+      - ux
+    volumes_from:
+      - ux:rw
