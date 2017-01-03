@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  redis:
+    image: redis
+
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_PASSWORD: abcabc
+      POSTGRES_USER: blog
+      POSTGRES_DB: blog
+
+  daphne:
+    command: daphne -p 8000 -b 0.0.0.0 djangoblog.asgi:channel_layer
+    entrypoint: ["./entrypoint.sh"]
+    build:
+      context: .
+      dockerfile: dockerfile
+    depends_on:
+      - db
+      - redis
+      - worker
+    links:
+      - db
+      - redis
+
+  worker:
+    command: python manage.py runworker
+    build:
+      context: .
+      dockerfile: dockerfile
+    depends_on:
+      - db
+      - redis
+    links:
+      - db
+      - redis
