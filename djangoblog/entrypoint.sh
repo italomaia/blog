@@ -2,10 +2,14 @@
 
 set -e
 
-echo "Migrating apps"
-python manage.py migrate --no-input
+case "$1" in
+  daphne)
+    echo "Migrating apps"
+    python manage.py migrate --no-input
 
-echo "Compiling locale"
-python manage.py compilemessages
+    echo "Compiling locale"
+    python manage.py compilemessages
+  ;;
+esac
 
 exec "$@"
