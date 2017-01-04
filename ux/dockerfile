@@ -16,4 +16,6 @@ RUN gulp --cwd=semantic-ui build
 
 COPY . ./
 
+VOLUME /usr/src/ux/dist/
+
 CMD npm run build
