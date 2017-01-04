@@ -17,3 +17,7 @@ services:
       - ux
     volumes_from:
       - ux:rw
+
+  web:
+    env_file:
+      - env-dev

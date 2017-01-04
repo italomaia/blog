@@ -5,3 +5,18 @@ services:
     build:
       context: ./ux
       dockerfile: dockerfile
+
+  web:
+    env_file:
+      - env
+    build:
+      context: ./web
+      dockerfile: dockerfile
+    volumes_from:
+      - ux:ro
+    depends_on:
+      - ux
+      - app
+    links:
+      - ux
+      - app
