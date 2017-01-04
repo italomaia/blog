@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  db:
+    env_file:
+      - env-dev
+  app:
+    env_file:
+      - env-dev
+  worker:
+    env_file:
+      - env-dev

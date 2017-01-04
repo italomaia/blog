@@ -6,16 +6,16 @@ services:
 
   db:
     image: postgres:9.6
-    environment:
-      POSTGRES_PASSWORD: abcabc
-      POSTGRES_USER: blog
-      POSTGRES_DB: blog
+    env_file:
+      - env
 
-  daphne:
+  app:
     command: daphne -p 8000 -b 0.0.0.0 djangoblog.asgi:channel_layer
     entrypoint: ["./entrypoint.sh"]
+    env_file:
+      - env
     build:
-      context: .
+      context: ./djangoblog
       dockerfile: dockerfile
     depends_on:
       - db
@@ -27,8 +27,10 @@ services:
 
   worker:
     command: python manage.py runworker
+    env_file:
+      - env
     build:
-      context: .
+      context: ./djangoblog
       dockerfile: dockerfile
     depends_on:
       - db
