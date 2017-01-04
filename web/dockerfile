@@ -2,8 +2,7 @@ FROM nginx
 
 COPY redirect.conf /tmp/redirect.raw
 COPY default.conf /tmp/default.raw
-COPY nginx.conf /tmp/nginx.raw
 COPY entrypoint.sh /
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD service nginx start
+CMD nginx -g 'daemon off;'
