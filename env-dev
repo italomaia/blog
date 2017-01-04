@@ -1,0 +1,5 @@
+DEBUG=true
+DOMAIN=dev
+UX_TRY_FILES=@ux
+LISTEN_IPV4=80
+LISTEN_IPV6=[::]:80 ipv6only=on
