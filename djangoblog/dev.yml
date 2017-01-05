@@ -7,6 +7,8 @@ services:
   app:
     env_file:
       - env-dev
+    ports:
+      - "8000:8000"
   worker:
     env_file:
       - env-dev
