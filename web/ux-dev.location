@@ -1,0 +1,15 @@
+location ~ ^/(app\.js|__webpack_hmr)?$ {
+  proxy_pass http://ux;
+  proxy_redirect off;
+
+  proxy_set_header X-Real-IP          ${DO}remote_addr;
+  proxy_set_header X-Forwarded-For    ${DO}proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto  ${DO}scheme;
+  proxy_set_header Host               ${DO}http_host;
+  proxy_set_header X-NginX-Proxy      true;
+
+  # Socket.IO Support
+  proxy_http_version 1.1;
+  proxy_set_header Upgrade        ${DO}http_upgrade;
+  proxy_set_header Connection     "upgrade";
+}
