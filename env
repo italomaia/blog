@@ -1,8 +1,10 @@
 DEBUG=false
 DOMAIN=prod
-UX_TRY_FILES=index.html
+
 LISTEN_IPV4=443 ssl http2
 LISTEN_IPV6=[::]:443 ipv6only=on ssl http2
+
+UX_LOCATION=ux.location
 
 POSTGRES_PASSWORD=passwd
 POSTGRES_USER=blog
