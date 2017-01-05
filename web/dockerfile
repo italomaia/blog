@@ -1,0 +1,10 @@
+FROM nginx
+
+COPY redirect.conf /tmp/redirect.raw
+COPY default.conf /tmp/default.raw
+COPY ux.location /tmp/
+COPY ux-dev.location /tmp/
+COPY entrypoint.sh /
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD nginx -g 'daemon off;'

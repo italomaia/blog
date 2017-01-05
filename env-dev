@@ -1,0 +1,7 @@
+DEBUG=true
+DOMAIN=dev
+
+LISTEN_IPV4=80
+LISTEN_IPV6=[::]:80 ipv6only=on
+
+UX_LOCATION=ux-dev.location

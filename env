@@ -1,0 +1,13 @@
+DEBUG=false
+DOMAIN=prod
+
+LISTEN_IPV4=443 ssl http2
+LISTEN_IPV6=[::]:443 ipv6only=on ssl http2
+
+UX_LOCATION=ux.location
+
+POSTGRES_PASSWORD=passwd
+POSTGRES_USER=blog
+POSTGRES_DB=blog
+
+DO=$

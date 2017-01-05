@@ -1,0 +1,25 @@
+FROM python:3.5
+EXPOSE 8000
+
+# Ensure that Python outputs everything that's printed inside
+# the application rather than buffering it.
+ENV PYTHONUNBUFFERED 1
+ENV SRC /usr/src/app
+ENV USER blog
+
+RUN groupadd -r ${USER} && useradd -r -g ${USER} ${USER}
+
+RUN apt-get -qq update && apt-get install -qq -y \
+  gettext \
+  postgresql-client libpq-dev \
+--no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p ${SRC}
+WORKDIR ${SRC}
+
+COPY requirements.txt ${SRC}
+RUN pip install -r requirements.txt
+COPY . ${SRC}/
+
+RUN chown -R ${USER}:${USER} ${SRC}
+USER ${USER}

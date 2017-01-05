@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  ux:
+    build:
+      context: ./ux
+      dockerfile: dockerfile
+
+  web:
+    env_file:
+      - env
+    build:
+      context: ./web
+      dockerfile: dockerfile
+    volumes_from:
+      - ux:ro
+    ports:
+      - "7443:443"
+      - "7000:80"
+    depends_on:
+      - ux
+      - app
+    links:
+      - ux
+      - app
