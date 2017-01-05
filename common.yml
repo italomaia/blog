@@ -15,8 +15,8 @@ services:
     volumes_from:
       - ux:ro
     ports:
-      - "443:443"
-      - "80:80"
+      - "7443:443"
+      - "7000:80"
     depends_on:
       - ux
       - app
