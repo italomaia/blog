@@ -1,4 +1,5 @@
 FROM python:3.5
+EXPOSE 8000
 
 # Ensure that Python outputs everything that's printed inside
 # the application rather than buffering it.
@@ -8,7 +9,7 @@ ENV USER blog
 
 RUN groupadd -r ${USER} && useradd -r -g ${USER} ${USER}
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get -qq update && apt-get install -qq -y \
   gettext \
   postgresql-client libpq-dev \
 --no-install-recommends && rm -rf /var/lib/apt/lists/*
